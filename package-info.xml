@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>SleePy:ipv6_support</id>
+	<name>IPv6 Support</name>
+	<version>1.0</version>
+	<type>modification</type>
+	<install for="2.0-2.0.99">
+		<readme>README.txt</readme>
+		<modification>ipv6.xml</modification>
+		<database>database_install.php</database>
+	</install>
+	<uninstall for="2.0-2.0.99">
+		<modification reverse="true">ipv6.xml</modification>
+		<database>database_remove.php</database>
+	</uninstall>
+</package-info>
