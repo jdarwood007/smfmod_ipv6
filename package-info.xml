@@ -3,7 +3,7 @@
 <package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
 	<id>SleePy:ipv6_support</id>
 	<name>IPv6 Support</name>
-	<version>1.0</version>
+	<version>1.0.1</version>
 	<type>modification</type>
 	<install for="2.0-2.0.99">
 		<readme>README.txt</readme>
