@@ -403,8 +403,7 @@
 
 		<operation>
 
-			<search position="after"><![CDATA[?>
-]]></search>
+			<search position="end" />
 
 			<add><![CDATA[// Working with them as if they where IPv4 numbers, makes it SMF compatible.
 function smf_ipv6_to_ints($ip)
