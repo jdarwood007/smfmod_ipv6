@@ -14,5 +14,8 @@ This customization is released under the BSD 3-Clause license. The terms of the 
 
 ChangeLog:
 
+Version 1.0.1
+! Fixed a search to use end instead of ?>
+
 Version 1.0
 ! Release
