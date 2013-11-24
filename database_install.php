@@ -14,26 +14,26 @@ global $db_prefix, $modSettings, $func, $smcFunc;
 
 // Fields to add
 $new_fields = array(
-	'is_ipv6' => array('name'=> 'is_ipv6', 'type'=>'SMALLINT(255)', 'unsigned' => true, 'default' => 0),
-	'ip_low5' => array('name'=> 'ip_low5', 'type'=>'SMALLINT(255)', 'unsigned' => true, 'default' => 0),
-	'ip_high5' => array('name'=> 'ip_high5', 'type'=>'SMALLINT(255)', 'unsigned' => true, 'default' => 0),
-	'ip_low6' => array('name'=> 'ip_low6', 'type'=>'SMALLINT(255)', 'unsigned' => true, 'default' => 0),
-	'ip_high6' => array('name'=> 'ip_high6', 'type'=>'SMALLINT(255)', 'unsigned' => true, 'default' => 0),
-	'ip_low7' => array('name'=> 'ip_low7', 'type'=>'SMALLINT(255)', 'unsigned' => true, 'default' => 0),
-	'ip_high7' => array('name'=> 'ip_high7', 'type'=>'SMALLINT(255)', 'unsigned' => true, 'default' => 0),
-	'ip_low8' => array('name'=> 'ip_low8', 'type'=>'SMALLINT(255)', 'unsigned' => true, 'default' => 0),
-	'ip_high8' => array('name'=> 'ip_high8', 'type'=>'SMALLINT(255)', 'unsigned' => true, 'default' => 0),
+	'is_ipv6' => array('name'=> 'is_ipv6', 'type'=>'SMALLINT', 'unsigned' => true, 'default' => 0),
+	'ip_low5' => array('name'=> 'ip_low5', 'type'=>'SMALLINT', 'unsigned' => true, 'default' => 0),
+	'ip_high5' => array('name'=> 'ip_high5', 'type'=>'SMALLINT', 'unsigned' => true, 'default' => 0),
+	'ip_low6' => array('name'=> 'ip_low6', 'type'=>'SMALLINT', 'unsigned' => true, 'default' => 0),
+	'ip_high6' => array('name'=> 'ip_high6', 'type'=>'SMALLINT', 'unsigned' => true, 'default' => 0),
+	'ip_low7' => array('name'=> 'ip_low7', 'type'=>'SMALLINT', 'unsigned' => true, 'default' => 0),
+	'ip_high7' => array('name'=> 'ip_high7', 'type'=>'SMALLINT', 'unsigned' => true, 'default' => 0),
+	'ip_low8' => array('name'=> 'ip_low8', 'type'=>'SMALLINT', 'unsigned' => true, 'default' => 0),
+	'ip_high8' => array('name'=> 'ip_high8', 'type'=>'SMALLINT', 'unsigned' => true, 'default' => 0),
 );
 
 $changed_fields = array(
-	'ip_low1' => array('name'=> 'ip_low1', 'type'=>'SMALLINT(255)'),
-	'ip_high1' => array('name'=> 'ip_high1', 'type'=>'SMALLINT(255)'),
-	'ip_low2' => array('name'=> 'ip_low2', 'type'=>'SMALLINT(255)'),
-	'ip_high2' => array('name'=> 'ip_high2', 'type'=>'SMALLINT(255)'),
-	'ip_low3' => array('name'=> 'ip_low3', 'type'=>'SMALLINT(255)'),
-	'ip_high3' => array('name'=> 'ip_high3', 'type'=>'SMALLINT(255)'),
-	'ip_low4' => array('name'=> 'ip_low4', 'type'=>'SMALLINT(255)'),
-	'ip_high4' => array('name'=> 'ip_high4', 'type'=>'SMALLINT(255)'),
+	'ip_low1' => array('name'=> 'ip_low1', 'type'=>'SMALLINT'),
+	'ip_high1' => array('name'=> 'ip_high1', 'type'=>'SMALLINT'),
+	'ip_low2' => array('name'=> 'ip_low2', 'type'=>'SMALLINT'),
+	'ip_high2' => array('name'=> 'ip_high2', 'type'=>'SMALLINT'),
+	'ip_low3' => array('name'=> 'ip_low3', 'type'=>'SMALLINT'),
+	'ip_high3' => array('name'=> 'ip_high3', 'type'=>'SMALLINT'),
+	'ip_low4' => array('name'=> 'ip_low4', 'type'=>'SMALLINT'),
+	'ip_high4' => array('name'=> 'ip_high4', 'type'=>'SMALLINT'),
 );
 
 // Load up the board info, we will only add these once.
