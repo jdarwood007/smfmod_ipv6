@@ -46,7 +46,7 @@ foreach ($new_fields as $column_name => $column_attributes)
 
 // Do the loopy, loop, loe.
 foreach ($changed_fields as $column_name => $column_attributes)
-	$smcFunc['db_change_column']('{db_prefix}ban_items', $column_attributes);
+	$smcFunc['db_change_column']('{db_prefix}ban_items', $column_name, $column_attributes);
 
 // Find any IPv6 bans and reenable them again.
 // !!! Note, We changed is_ipv6 to the time stamp of when it is supposed of expired, 1 if it was a perm ban.
