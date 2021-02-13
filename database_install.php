@@ -3,14 +3,14 @@ error_reporting(E_ALL);
 
 // Hopefully we have the goodies.
 if (file_exists(dirname(__FILE__) . '/SSI.php') && !defined('SMF'))
-{
-	$using_ssi = true;
 	require_once(dirname(__FILE__) . '/SSI.php');
-}
 elseif (!defined('SMF'))
 	exit('<b>Error:</b> Cannot install - please verify you put this in the same place as SMF\'s index.php.');
 
-global $db_prefix, $modSettings, $func, $smcFunc;
+global $smcFunc;
+
+// SSI may not present the database extension, while being ran via package manager does.
+db_extend('packages');
 
 // Fields to add
 $new_fields = array(
@@ -37,20 +37,20 @@ $changed_fields = array(
 );
 
 // Load up the board info, we will only add these once.
-$table_columns = $smcFunc['db_list_columns']($db_prefix . 'ban_items');
+$table_columns = $smcFunc['db_list_columns']('{db_prefix}ban_items');
 
 // Do the loopy, loop, loe.
 foreach ($new_fields as $column_name => $column_attributes)
 	if (!in_array($column_name, $table_columns))
-		$smcFunc['db_add_column']($db_prefix . 'ban_items', $column_attributes);
+		$smcFunc['db_add_column']('{db_prefix}ban_items', $column_attributes);
 
 // Do the loopy, loop, loe.
 foreach ($changed_fields as $column_name => $column_attributes)
-	$smcFunc['db_change_column']($db_prefix . 'ban_items', $column_attributes);
+	$smcFunc['db_change_column']('{db_prefix}ban_items', $column_attributes);
 
 // Find any IPv6 bans and reenable them again.
 // !!! Note, We changed is_ipv6 to the time stamp of when it is supposed of expired, 1 if it was a perm ban.
-$result = $smcFunc['db_query']('', '
+$request = $smcFunc['db_query']('', '
 	SELECT id_ban_group, is_ipv6
 	FROM {db_prefix}ban_items
 	WHERE is_ipv6 < {int:is_ipv6}',
@@ -94,15 +94,15 @@ $smcFunc['db_query']('', '
 ));
 
 // Handle our lost bans.
-if (!empty($lost_bans) && !empty($using_ssi))
+if (!empty($lost_bans) && SMF === 'SSI')
 	echo 'We had some bans that we could not properly enable. Please check these ban ids:', implode(', ', $lost_bans), '<br />';
 
 // For debugging/support purposes.
 if (!empty($lost_bans))
-log_error('Lost bans during IPV6 re-enabling:', implode(', ', $lost_bans), 'critical');
+	log_error('Lost bans during IPV6 re-enabling:', implode(', ', $lost_bans), 'critical');
 
 // Update our ban time, forcing rechecks to occur.
 updateSettings(array('banLastUpdated' => time()));
 
-if(!empty($using_ssi))
+if (SMF === 'SSI')
 	echo 'If no errors, Success!';

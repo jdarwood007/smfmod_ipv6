@@ -3,17 +3,17 @@ error_reporting(E_ALL);
 
 // Hopefully we have the goodies.
 if (file_exists(dirname(__FILE__) . '/SSI.php') && !defined('SMF'))
-{
-	$using_ssi = true;
 	require_once(dirname(__FILE__) . '/SSI.php');
-}
 elseif (!defined('SMF'))
 	exit('<b>Error:</b> Cannot install - please verify you put this in the same place as SMF\'s index.php.');
 
-global $db_prefix, $modSettings, $func, $smcFunc;
+global $smcFunc;
+
+// SSI may not present the database extension, while being ran via package manager does.
+db_extend('packages');
 
 // Find any IPv6 bans.
-$result = $smcFunc['db_query']('', '
+$request = $smcFunc['db_query']('', '
 	SELECT bi.id_ban_group, bi.is_ipv6, bg.expire_time
 	FROM {db_prefix}ban_items AS bi
 		INNER JOIN {db_prefix}ban_groups AS bg ON (bi.id_ban_group = bg.id_ban_group)
@@ -23,7 +23,7 @@ $result = $smcFunc['db_query']('', '
 ));
 
 $ipv6_bans = array();
-while($row = $smcFunc['db_fetch_assoc']($request))
+while ($row = $smcFunc['db_fetch_assoc']($request))
 {
 	if ($row['expire_time'] != 'NULL')
 		$smcFunc['db_query']('', '
@@ -51,6 +51,5 @@ $smcFunc['db_query']('', '
 // Update our ban time, forcing rechecks to occur.
 updateSettings(array('banLastUpdated' => time()));
 
-if(!empty($using_ssi))
+if (SMF === 'SSI')
 	echo 'If no errors, Success!';
-?>
